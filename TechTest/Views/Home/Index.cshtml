@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-show="!showEdit">
+    <h1>Index</h1>
+    <div class="row padding-bottom">
+        <div class="col-md-12">
+            <a href="javascript:void(0)" ng-click="createNew()">Create New</a>
+        </div>
+    </div>
+    <div class="row padding-bottom">
+        <div class="col-md-12">
+            <span ng-show="people.length == 0">No records found in the database</span>
+            <input ng-show="people.length > 0" class="full-width" ng-model="query" type="text" placeholder="Filter by name" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12  table-responsive">
+            <table ng-show="people.length > 0" class="table">
+                <tr>
+                    <th class="text-center">
+                        Full Name
+                    </th>
+                    <th class="text-center">
+                        Gender
+                    </th>
+                    <th class="text-center">
+                        Date Of Birth
+                    </th>
+                    <th class="text-center">
+                        Previously Ordered
+                    </th>
+                    <th class="text-center">
+                        Favourite Colours
+                    </th>
+                    <th class="text-center">
+                        Actions
+                    </th>
+                </tr>
+                <tr ng-repeat="item in people | filter: { FullName: query } | orderBy: 'FullName'">
+                    <td>
+                        <a href="javascript:void(0)" ng-click="editPerson(item.PersonId)" ng-bind="item.FullName"></a>
+                    </td>
+                    <td>
+                        <p ng-bind="item.Gender"></p>
+                    </td>
+                    <td>
+                        <p ng-bind="item.DOB | date:'dd/MM/yyyy'"></p>
+                    </td>
+                    <td>
+                        <p ng-if="item.PreviouslyOrdered" class="green">Yes</p>
+                        <p ng-if="!item.PreviouslyOrdered" class="red">No</p>
+                    </td>
+                    <td>
+                        <p ng-bind="item.Colours | ColourStringFilter"></p>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)" ng-click="delete(item.PersonId)">Delete <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        <a href="javascript:void(0)" ng-click="editPerson(item.PersonId)">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div ng-show="showEdit">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 ng-bind="title"></h2>
+            <hr />
+            <form novalidate name="personForm" ng-submit="saveUpdatePerson(person)">
+                <label>First Name</label>
+                <div class="input-group form-group" ng-class="{ 'has-error': !personForm.FirstName.$valid && formSubmitted }">
+                    <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="FirstName" ng-model="person.FirstName" required>
+                    <span class="padding" ng-show="!personForm.FirstName.$valid && formSubmitted">Firstname is required</span>
+                </div>
+                <label>Last Name</label>
+                <div class="input-group form-group" ng-class="{ 'has-error': !personForm.LastName.$valid && formSubmitted }">
+                    <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="LastName" ng-model="person.LastName" required>
+                    <span class="padding" ng-show="!personForm.LastName.$valid && formSubmitted">LastName is required</span>
+                </div>
+                <label>Gender</label>
+                <div class="input-group form-group" ng-class="{ 'has-error': !personForm.Gender.$valid && formSubmitted }">
+                    <span class="input-group-addon"></span>
+                    <select class="form-control" name="Gender" ng-model="person.Gender" required>
+                        <option value="">Please choose</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <span class="padding" ng-show="!personForm.Gender.$valid && formSubmitted">Gender is required</span>
+                </div>
+                <label>Date Of Birth</label>
+                <div class="input-group form-group" ng-class="{ 'has-error': !personForm.DOB.$valid && formSubmitted }">
+                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    <input type="date" class="form-control" name="DOB" ng-model="person.DOB" required>
+                    <span class="padding" ng-show="!personForm.DOB.$valid && formSubmitted">Date of birth is required</span>
+                </div>
+                <label>Previously Ordered</label>
+                <div class="form-group">
+                    <input type="checkbox" class="fa" ng-class="person.PreviouslyOrdered ? 'fa-check-square-o' : 'fa-square-o'"
+                           ng-click="person.PreviouslyOrdered = !person.PreviouslyOrdered;$event.preventDefault();" />
+                </div>
+                <label>Favourite Colours</label>
+                <div class="form-group">
+                    <label ng-repeat="item in colours" class="checkbox-inline padding-bottom">
+                        <input type="checkbox" href="" class="fa" ng-class="Colours.indexOf(item.ColourId) > -1 ? 'fa-check-square-o' : 'fa-square-o'" 
+                               ng-click="toggleCheckBox(item.ColourId);$event.preventDefault();"/>
+                        {{item.Name}}
+                    </label>
+                </div>
+                <button class="btn btn-success" type="submit" >
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{title}}
+                </button>
+                <button class="btn btn-danger" type="button" ng-click="init()">
+                    <i class="fa fa-ban" aria-hidden="true"></i> Cancel
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_LoadingModal")

@@ -1,0 +1,10 @@
+C:\Users\alexh\Desktop\TechTest\Models\bin\Debug\Models.dll.config
+C:\Users\alexh\Desktop\TechTest\Models\bin\Debug\Models.dll
+C:\Users\alexh\Desktop\TechTest\Models\bin\Debug\Models.pdb
+C:\Users\alexh\Desktop\TechTest\Models\bin\Debug\EntityFramework.dll
+C:\Users\alexh\Desktop\TechTest\Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\alexh\Desktop\TechTest\Models\bin\Debug\EntityFramework.xml
+C:\Users\alexh\Desktop\TechTest\Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\alexh\Desktop\TechTest\Models\obj\Debug\TechTest.Models.csproj.CoreCompileInputs.cache
+C:\Users\alexh\Desktop\TechTest\Models\obj\Debug\Models.dll
+C:\Users\alexh\Desktop\TechTest\Models\obj\Debug\Models.pdb

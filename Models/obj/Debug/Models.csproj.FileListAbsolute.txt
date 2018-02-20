@@ -1,0 +1,10 @@
+C:\Users\mg5559\Downloads\TechTest\Models\bin\Debug\Models.dll
+C:\Users\mg5559\Downloads\TechTest\Models\bin\Debug\Models.pdb
+C:\Users\mg5559\Downloads\TechTest\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+C:\Users\mg5559\Downloads\TechTest\Models\obj\Debug\Models.dll
+C:\Users\mg5559\Downloads\TechTest\Models\obj\Debug\Models.pdb
+C:\Users\mg5559\Downloads\TechTest\Models\bin\Debug\Models.dll.config
+C:\Users\mg5559\Downloads\TechTest\Models\bin\Debug\EntityFramework.dll
+C:\Users\mg5559\Downloads\TechTest\Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mg5559\Downloads\TechTest\Models\bin\Debug\EntityFramework.xml
+C:\Users\mg5559\Downloads\TechTest\Models\bin\Debug\EntityFramework.SqlServer.xml
